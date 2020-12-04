@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickStop(View view) {
-
         Intent stopIntent = new Intent(this, MyForegroundService.class);
         stopService(stopIntent);
         updateUI();
