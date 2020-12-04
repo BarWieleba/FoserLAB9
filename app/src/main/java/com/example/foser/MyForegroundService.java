@@ -29,11 +29,17 @@ public class MyForegroundService extends Service {
     public static final String WORK = "work";
     public static final String WORK_DOUBLE = "work_double";
 
+    public static final String TIME_2S = "work2s";
+    public static final String TIME_5S = "work5s";
+    public static final String TIME_10S = "work10s";
+
     //3. Wartości ustawień
     private String message;
-    private Boolean show_time, do_work, double_speed;
+    private Boolean show_time, do_work, double_speed, work2s, work5s, work10s;
 
-    private final long period = 2000; //2s
+    private final long period2s = 2000; //2s
+    private final long period5s = 5000; //5s
+    private final long period10s = 10000; //10s
 
     //4.
     private Context ctx;
@@ -90,6 +96,10 @@ public class MyForegroundService extends Service {
         show_time = intent.getBooleanExtra(TIME,false);
         do_work = intent.getBooleanExtra(WORK,false);
         double_speed = intent.getBooleanExtra(WORK_DOUBLE,false);
+        work2s = intent.getBooleanExtra(TIME_2S, true);
+        work5s = intent.getBooleanExtra(TIME_5S, false);
+        work10s = intent.getBooleanExtra(TIME_10S, false);
+
 
         createNotificationChannel();
 
@@ -132,7 +142,15 @@ public class MyForegroundService extends Service {
 
     private void doWork() {
         if(do_work) {
-            timer.schedule(timerTask, 0L, double_speed ? period / 2L : period);
+            if (work2s){
+                timer.schedule(timerTask, 0L, double_speed ? period2s / 2L : period2s);
+            }
+            else if (work5s){
+                timer.schedule(timerTask, 0L, double_speed ? period5s / 2L : period2s);
+            }
+            else if (work10s){
+                timer.schedule(timerTask, 0L, double_speed ? period10s / 2L : period10s);
+            }
         }
     }
 

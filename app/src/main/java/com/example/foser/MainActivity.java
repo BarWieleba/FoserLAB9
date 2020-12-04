@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView textInfoService, textInfoSettings;
 
     private String message;
-    private Boolean show_time, work, work_double;
+    private Boolean show_time, work, work_double, work2s, work5s, work10s;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
         startIntent.putExtra(MyForegroundService.TIME,show_time);
         startIntent.putExtra(MyForegroundService.WORK,work);
         startIntent.putExtra(MyForegroundService.WORK_DOUBLE,work_double);
+        startIntent.putExtra(MyForegroundService.TIME_2S, work2s);
+        startIntent.putExtra(MyForegroundService.TIME_5S, work5s);
+        startIntent.putExtra(MyForegroundService.TIME_10S, work10s);
 
 
         ContextCompat.startForegroundService(this, startIntent);
@@ -106,11 +110,19 @@ public class MainActivity extends AppCompatActivity {
         show_time = sharedPreferences.getBoolean("show_time", true);
         work = sharedPreferences.getBoolean("sync",true);
         work_double = sharedPreferences.getBoolean("double", false);
+        work2s = sharedPreferences.getBoolean("2s", true);
+        work5s = sharedPreferences.getBoolean("5s", false);
+        work10s = sharedPreferences.getBoolean("10s", false);
+
+
 
         return "Message: " + message + "\n"
                 +"show_time: " + show_time.toString() +"\n"
                 +"work: " + work.toString() + "\n"
-                +"double: " + work_double.toString();
+                +"double: " + work_double.toString() + "\n"
+                +"work_2s: " + work2s.toString() + "\n"
+                +"work_5s: " + work5s.toString() + "\n"
+                +"work_10s: " + work10s.toString();
     }
     private void updateUI(){
 

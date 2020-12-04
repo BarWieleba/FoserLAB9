@@ -43,4 +43,11 @@
     <string name="attachment_summary_off">Standard operating frequency</string>
     <!--<string name="attachment_summary_off">Only download attachments when manually requested</string>-->
 
+    <!-- Work speed -->
+    <string name="title_workSpeed">Work speed</string>
+    <string name="speed_2s">Count delay 2 seconds</string>
+    <string name="speed_5s">Count delay 5 seconds</string>
+    <string name="speed_10s">Count delay 10 seconds</string>
+
+
 </resources>
