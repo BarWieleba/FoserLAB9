@@ -74,5 +74,11 @@
             android:title="@string/speed_10s" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="Counting option">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="countOpt"
+            android:title="@string/countOption"/>
+    </PreferenceCategory>
 
 </PreferenceScreen>

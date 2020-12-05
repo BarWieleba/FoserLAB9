@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Handler;
@@ -33,9 +34,11 @@ public class MyForegroundService extends Service {
     public static final String TIME_5S = "work5s";
     public static final String TIME_10S = "work10s";
 
+    public static final String COUNT_OPT = "countOpt";
+
     //3. Wartości ustawień
     private String message;
-    private Boolean show_time, do_work, double_speed, work2s, work5s, work10s;
+    private Boolean show_time, do_work, double_speed, work2s, work5s, work10s, countOpt;
 
     private final long period2s = 2000; //2s
     private final long period5s = 5000; //5s
@@ -59,7 +62,15 @@ public class MyForegroundService extends Service {
         notificationIntent = new Intent(ctx, MainActivity.class);
         pendingIntent = PendingIntent.getActivity(this,0,notificationIntent,0);
 
-        counter = 0;
+        final SharedPreferences preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
+        counter  = preferences.getInt("counter", 0);
+        countOpt = preferences.getBoolean("countOpt", false);
+
+        if (!countOpt){
+            counter = 0;
+        }
+
+        //counter = 0;
 
         timer = new Timer();
 
@@ -74,6 +85,9 @@ public class MyForegroundService extends Service {
 
     @Override
     public void onDestroy() {
+
+        final SharedPreferences preferences = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
+        preferences.edit().putInt("counter", counter).apply();
         handler.removeCallbacks(runnable);
         timer.cancel();
         timer.purge();
@@ -99,7 +113,7 @@ public class MyForegroundService extends Service {
         work2s = intent.getBooleanExtra(TIME_2S, true);
         work5s = intent.getBooleanExtra(TIME_5S, false);
         work10s = intent.getBooleanExtra(TIME_10S, false);
-
+        //countOpt = intent.getBooleanExtra(COUNT_OPT, false);
 
         createNotificationChannel();
 

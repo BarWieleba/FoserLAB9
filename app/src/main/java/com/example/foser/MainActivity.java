@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textInfoService, textInfoSettings;
 
     private String message;
-    private Boolean show_time, work, work_double, work2s, work5s, work10s;
+    private Boolean show_time, work, work_double, work2s, work5s, work10s, countOpt;
 
 
     @Override
@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         startIntent.putExtra(MyForegroundService.TIME_2S, work2s);
         startIntent.putExtra(MyForegroundService.TIME_5S, work5s);
         startIntent.putExtra(MyForegroundService.TIME_10S, work10s);
+        startIntent.putExtra(MyForegroundService.COUNT_OPT, countOpt);
 
 
         ContextCompat.startForegroundService(this, startIntent);
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         work2s = sharedPreferences.getBoolean("2s", true);
         work5s = sharedPreferences.getBoolean("5s", false);
         work10s = sharedPreferences.getBoolean("10s", false);
+        countOpt = sharedPreferences.getBoolean("countOpt", false);
 
 
 
@@ -122,7 +124,8 @@ public class MainActivity extends AppCompatActivity {
                 +"double: " + work_double.toString() + "\n"
                 +"work_2s: " + work2s.toString() + "\n"
                 +"work_5s: " + work5s.toString() + "\n"
-                +"work_10s: " + work10s.toString();
+                +"work_10s: " + work10s.toString() + "\n"
+                +"od Nowa: " + countOpt.toString();
     }
     private void updateUI(){
 

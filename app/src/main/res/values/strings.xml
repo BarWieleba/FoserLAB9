@@ -49,5 +49,7 @@
     <string name="speed_5s">Count delay 5 seconds</string>
     <string name="speed_10s">Count delay 10 seconds</string>
 
+    <!--Counting-->
+    <string name="countOption">Nie odliczaj od nowa</string>
 
 </resources>
