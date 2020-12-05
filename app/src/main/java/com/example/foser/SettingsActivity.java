@@ -42,14 +42,21 @@ public class SettingsActivity extends AppCompatActivity {
             if(preferences.getBoolean("2s", true)){
                 switchPreference2.setChecked(false);
                 switchPreference3.setChecked(false);
+
+                switchPreference1.setEnabled(false);
+
             }
             else if(preferences.getBoolean("5s", true)){
                 switchPreference1.setChecked(false);
                 switchPreference3.setChecked(false);
+
+                switchPreference2.setEnabled(false);
             }
             else if (preferences.getBoolean("10s", true)){
                 switchPreference2.setChecked(false);
                 switchPreference1.setChecked(false);
+
+                switchPreference3.setEnabled(false);
             }
 
             switchPreference1.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {

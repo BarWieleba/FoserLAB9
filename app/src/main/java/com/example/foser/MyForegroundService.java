@@ -146,7 +146,7 @@ public class MyForegroundService extends Service {
                 timer.schedule(timerTask, 0L, double_speed ? period2s / 2L : period2s);
             }
             else if (work5s){
-                timer.schedule(timerTask, 0L, double_speed ? period5s / 2L : period2s);
+                timer.schedule(timerTask, 0L, double_speed ? period5s / 2L : period5s);
             }
             else if (work10s){
                 timer.schedule(timerTask, 0L, double_speed ? period10s / 2L : period10s);
